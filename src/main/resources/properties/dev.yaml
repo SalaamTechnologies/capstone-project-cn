@@ -1,0 +1,3 @@
+db:
+ host: "bxvqsy7lekm9kryivmvl-mysql.services.clever-cloud.com"
+ port: "3306"
