@@ -1,0 +1,56 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  customerRequest:
+    type: object
+    required: true
+    properties:
+      contactType:
+        required: false
+        type: string
+        enum:
+          - mobile
+          - email
+        example: email
+      Countrycode:
+        required: false
+        type: string
+        enum:
+          - "+91"
+          - "+1"
+        example: "+91"      
+      mobile:
+        required: false
+        type: string
+        example: "5676456354"
+      email:
+        required: false
+        type: string
+        example: kumar@gmail.com
+      password:
+        required: true
+        type: string
+        example: dsfhdshxf
+      acceptDataPolicy:
+        required: true
+        type: boolean
+      recieveNews:
+        required: true
+        type: boolean
+      acceptPIC:
+        required: true
+        type: boolean 
+      locale:
+        required: true
+        type: string
+        enum:
+          - en
+          - zh
+        example: en
+      captchatoken:
+        required: true
+        type: string
+        example: sbmhasvdfhdsfhsdfjvjhsfbvsfdvvdhgv
+      recieveClaimsettle:
+        required: true
+        type: string
