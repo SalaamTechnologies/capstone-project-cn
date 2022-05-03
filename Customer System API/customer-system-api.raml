@@ -1,0 +1,49 @@
+#%RAML 1.0
+title: Customer System API
+mediaType: 
+- application/json
+
+/customers/status:
+  patch:
+    body:
+      type: !include datatypes/request/customer-status-update.raml
+      examples:
+       customerStatusRequest: {
+        "customerStatusRequest": {
+          "contactType": "as",
+          "countryCode": "USA",
+          "mobile": "+1918181717",
+          "email": "abc@abi.com",
+          "password": "password",
+          "status": true
+        }
+}
+    headers:
+      x-cms-transactionId: 
+        required: true
+        type: string
+        minLength: 36
+        maxLength: 36
+      ClientId:
+        type: string
+        required: true
+      ClientSecret:
+        type: string
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include datatypes/response/customer-status-update-response.raml
+            examples:
+              {
+                  response:{
+                    customerStatusResponse:{
+                      eventInstanceId: "",
+                      status: "success",
+              }
+              }
+    
+                  
+                
+              }
