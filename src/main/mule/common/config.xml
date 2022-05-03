@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/secure-properties 
+http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<global-property doc:name="Global Property" doc:id="a58ae51a-4f14-4600-a2d3-287aad9ef1b4" name="env" value="local" />
+	<global-property doc:name="Global Property" doc:id="dd5a931a-72f5-480a-af7a-f2b1eca13736" name="secureKey" value="mulesoft" />
+	<configuration-properties doc:name="Configuration properties" doc:id="36edc91e-4cfe-4228-a1df-96d75ed02624" file="properties/${env}.yaml" />
+   <secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="c4f49fb5-c63b-430c-a46a-ede74928db7c" file="properties/secure/${env}.yaml" key="${secureKey}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="e5c959c0-2273-4ebe-98dc-16b05fc0f4d8" >
+		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${secure::db.user}" password="${secure::db.password}" database="${secure::db.database}"/>
+	</db:config>
+	</mule>
