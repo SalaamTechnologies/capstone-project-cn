@@ -1,0 +1,14 @@
+#%RAML 1.0 DataType
+properties:
+  verificationResponse:
+    type: object
+    required: true
+    properties:
+      eventInstanceId:
+        type: string
+        required: true
+      status:
+        type: string
+        required: true
+        enum: [success, failure]
+example: !include ../customersEmailVerificationExamples/emailVerificationResponseExample.json
