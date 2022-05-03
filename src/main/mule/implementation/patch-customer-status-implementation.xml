@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<sub-flow name="patch-customer-status-implementationSub_Flow" doc:id="042ca8d7-a6a6-4cd3-8128-f88c11d900b3" >
+		<logger level="INFO" doc:name="Request patch CustomerStatus Logger" doc:id="10ba0c3c-b3fe-4afe-adfa-c1d48f5b0957" message="#[%dw 2.0&#10;output application/json indent = false  &#10;---  &#10;{  	&#10;    TimeStamp: now(), 	&#10;    transactionId: vars.headers.'x-cms-transactionId', 	&#10;    AppName: app.name, 	&#10;    FlowName: flow.name, 	&#10;    BusinessProcessName:  &quot;patch CustomerStatus&quot;, 	&#10;    Category:  &quot;Customer&quot;, 	&#10;    OriginatingApplication:  &quot;Process API&quot;, 	&#10;    DesinationApplication:  &quot;DB&quot;, 	&#10;    CustomerId: &quot;NA&quot;, 	&#10;    txnState:  &quot;DB Request&quot; &#10;}]"/>
+		
+		<db:update doc:name="Update DB customer" doc:id="b75addf2-e63f-4ceb-a3cf-bebc969d2d1b" config-ref="Database_Config">
+			<db:sql ><![CDATA[UPDATE `customer`
+SET
+`contactType` = :contactType,
+`countryCode` = :countryCode,
+`mobile` = :mobile,
+`email` = :email,
+`password` = :password,
+`status` = :status,
+`acceptDataPolicy` = :acceptDataPolicy
+WHERE `mobile` = :mobile;]]></db:sql>
+			<db:input-parameters ><![CDATA[#[%dw 2.0
+output application/json
+---
+{
+	"contactType": vars.requestPayload.customerStatusRequest.contactType,
+	"countryCode": vars.requestPayload.customerStatusRequest.countryCode,
+	"mobile": vars.requestPayload.customerStatusRequest.mobile,
+	"email": vars.requestPayload.customerStatusRequest.email,
+	"password": vars.requestPayload.customerStatusRequest.password,
+	"status": vars.requestPayload.customerStatusRequest.status as String,
+	"acceptDataPolicy": vars.requestPayload.customerStatusRequest.acceptDataPolicy as String
+}]]]></db:input-parameters>
+		</db:update>
+		<logger level="INFO" doc:name="Response patch CustomerStatus Logger" doc:id="174d79d4-b585-4d09-b2d7-376f1d2d6c0f" message="#[%dw 2.0&#10;output application/json indent = false  &#10;---  &#10;{  	&#10;    TimeStamp: now(), 	&#10;    transactionId: vars.headers.'x-cms-transactionId', 	&#10;    AppName: app.name, 	&#10;    FlowName: flow.name, 	&#10;    BusinessProcessName:  &quot;patch CustomerStatus&quot;, 	&#10;    Category:  &quot;Customer&quot;, 	&#10;    OriginatingApplication:  &quot;Process API&quot;, 	&#10;    DesinationApplication:  &quot;DB&quot;, 	&#10;    CustomerId: &quot;NA&quot;, 	&#10;    txnState:  &quot;DB Response&quot; &#10;}]"/>
+		<ee:transform doc:name="Transform Message" doc:id="190b17d3-ec44-4b2c-a445-f878cfea0bb6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  customerStatusResponse: {
+    eventInstanceId: vars.headers.'x-cms-transactionId',
+    status: " updated successfully"
+  }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>
