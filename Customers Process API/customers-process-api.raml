@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: Customers Process API
+description: This API will create new customer.
+
+traits:
+  header: !include /exchange_modules/c1dfddf1-bc06-4261-bf9f-7e573d7c6f9f/hearer-papi/1.0.0/hearer-papi.raml
+types:
+  Customerrequest: !include /Datatype/CustomerdataType.raml
+  CustomerResponse: !include /Datatype/responsedataType.raml
+/customers:
+  is:
+    - header
+  post:
+    description: This API will create new customer 
+    body:
+     application/json:
+       examples: !include /Example/Customerexample.raml
+        
+    responses:
+      200:
+        body:
+         application/json:
+          examples: !include /Example/responseexample.raml

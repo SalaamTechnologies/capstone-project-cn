@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: Customers Email Verification Process API
+traits:
+  header: !include /Exchange_modules/Exchange1/Header/1.0.0/Header.raml
+types:
+  Customer-Email-Verification-Request: !include /DataTypes/Customer-Email-Verification-Requestapi.raml
+  Customer-Email-Verifications-Responses: !include /DataTypes/Customer-Email-Verifications-Responsesapi.raml
+
+/customer/email:
+  post:
+    is:
+      - header
+    body:
+      application/json:
+        example: !include /Examples/Customer-Email-Verification-Requestapi.raml
+    responses:
+        201:
+          body:
+            application/json:
+              example: !include /Examples/customer-verification-example.raml
+
+
+
