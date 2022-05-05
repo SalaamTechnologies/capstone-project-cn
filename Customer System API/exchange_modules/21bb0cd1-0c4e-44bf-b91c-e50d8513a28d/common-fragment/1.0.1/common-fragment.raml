@@ -1,0 +1,18 @@
+#%RAML 1.0 ResourceType
+
+traits:
+  common-header : !include /traits/header-common-trait.raml
+  authorization-header : !include /traits/header-oauth-authorization-trait.raml
+
+types:
+  error-dataType : !include /dataTypes/error-dataType.raml
+  post-customerStatus-request : !include /dataTypes/post-patch-get-customerStatus-request-dataType.raml
+  post-customerStatus-response : !include /dataTypes/post-patch-get-customerStatus-response-dataType.raml
+  post-customers-request : !include /dataTypes/post-customers-request-dataType.raml
+  post-customers-response : !include /dataTypes/post-customers-response-dataType.raml
+  post-verification-email-request : !include /dataTypes/post-verification-email-request-dataType.raml
+  post-verification-email-response : !include /dataTypes/post-verification-email-response-dataType.raml
+  post-customer-detail-request: !include /dataTypes/post-customers-detail-request-dataType.raml
+  post-customer-detail-response: !include /dataTypes/post-customers-detail-response-dataType.raml
+
+

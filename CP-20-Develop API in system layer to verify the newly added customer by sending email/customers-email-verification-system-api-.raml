@@ -1,0 +1,48 @@
+#%RAML 1.0
+title: Customers Email Verification System API 
+description: This API will verify the newly added customer by sending email
+baseUri: http://localhost:8081/api
+version: v1
+  
+uses:
+  secureLoginInfo-headers: commonLibrary.raml
+types:
+  emailVerificationRequest: !include customersEmailVerificationDataTypes/emailVerificationRequestDataType.raml
+  emailVerificationResponse: !include customersEmailVerificationDataTypes/emailVerificationResponseDataType.raml
+  
+/customers:
+  /email:
+    post:
+      is:
+        - secureLoginInfo-headers.x-cms-transactionId
+        - secureLoginInfo-headers.clientId
+        - secureLoginInfo-headers.clientSecret
+      body:
+        application/json:
+          type: emailVerificationRequest
+      responses: 
+        200:
+          body:
+            application/json:
+              type: emailVerificationResponse
+
+                        
+
+
+              
+        
+        
+
+            
+                    
+            
+          
+            
+          
+          
+          
+          
+            
+          
+
+      

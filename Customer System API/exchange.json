@@ -1,0 +1,1 @@
+{"main":"customer-system-api.raml","name":"Customer System API","classifier":"raml","tags":[],"publishWithRefFiles":true,"groupId":"21bb0cd1-0c4e-44bf-b91c-e50d8513a28d","assetId":"customer-system-api","version":"1.0.0","apiVersion":"v1","originalFormatVersion":"1.0","dependencies":[{"groupId":"21bb0cd1-0c4e-44bf-b91c-e50d8513a28d","assetId":"common-fragment","version":"1.0.1"}]}

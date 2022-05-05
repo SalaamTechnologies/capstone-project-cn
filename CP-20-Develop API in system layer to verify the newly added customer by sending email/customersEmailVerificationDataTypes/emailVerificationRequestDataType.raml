@@ -1,0 +1,22 @@
+#%RAML 1.0 DataType
+properties:
+  verificationRequest:
+    type: object
+    required: true
+    properties:               
+      contactType:
+        type: string
+        enum: [mobile, email]
+        required: true
+      countryCode:
+        type: string
+        enum: ["+91", "+1"]
+        required: false
+      mobile:
+        type: string
+        required: false
+      messageContent:
+        type: string
+        required: true
+example: !include  ../customersEmailVerificationExamples/emailVerificationRequestExample.json
+  

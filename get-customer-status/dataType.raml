@@ -1,0 +1,34 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  customerStatusRequest:
+    type: object
+    required: true
+    properties:
+      contactType:
+        required: true
+        enum:
+          - email
+          - text
+      countryCode:
+        required: false
+        type: string
+        enum:
+          - + 91
+          - + 1 
+      mobile:
+        required: false
+        type: number
+      password:
+        required: true
+        type: string
+      acceptDataPolicy:
+        required: true
+        type: boolean
+      status:
+        required: true
+        type: boolean
+  
+
+        
+    

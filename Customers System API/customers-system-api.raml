@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Customers System API
+traits:
+  header: !include /exchange_modules/c1dfddf1-bc06-4261-bf9f-7e573d7c6f9f/headers/1.0.0/headers.raml
+types:
+  Customerbody: !include /Datatypes/CustomerbodydataType.raml
+  CustomerResponse: !include /Datatypes/ResponsedataType.raml
+     
+/customers:
+  is:
+    - header
+  post:
+    description: This API will create new customer in Salesforce DB 
+    body:
+     application/json:
+       examples: !include /examples/Customerrequestexample.raml
+        
+    responses:
+      200:
+        body:
+         application/json:
+          examples: !include/examples/Customerresponseexample.raml
+            
+      

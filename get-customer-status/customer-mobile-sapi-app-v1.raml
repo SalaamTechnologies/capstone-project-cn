@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: customer-mobile-sapi-app-v1
+version: v1
+
+traits:
+  header: !include //exchange_modules/bec56681-ce9b-4aa7-96a1-4c4e2986f34a/header/1.0.0/header.raml
+
+/customers/status:
+  description: This API will retrieve customer data
+  get:
+    is: header
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include /dataType.raml
+            example: !include /example.raml
+      404:
+        body:
+          application/json:
+            example:
+              {
+                "status": 404,
+                "message": "Not Found"
+             }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status": 500,
+                "message": "Internal Server Error"
+              }
+              
+          
