@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>21bb0cd1-0c4e-44bf-b91c-e50d8513a28d</groupId>
 			<artifactId>customer-system-api</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 			<classifier>raml</classifier>
 			<type>zip</type>
 		</dependency>

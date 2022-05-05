@@ -3,7 +3,7 @@
     <http:listener-config name="customer-system-api-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8082" />
     </http:listener-config>
-    <apikit:config name="customer-system-api-config" api="resource::21bb0cd1-0c4e-44bf-b91c-e50d8513a28d:customer-system-api:1.0.0:raml:zip:customer-system-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <apikit:config name="customer-system-api-config" api="resource::21bb0cd1-0c4e-44bf-b91c-e50d8513a28d:customer-system-api:1.0.1:raml:zip:customer-system-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="customer-system-api-main">
         <http:listener config-ref="customer-system-api-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
