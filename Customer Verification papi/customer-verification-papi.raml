@@ -1,0 +1,97 @@
+#%RAML 1.0
+title: Customer Verification papi
+/customers:
+  post:
+  /status:
+    get:
+      
+    post:
+    patch:
+       
+  /verification:
+    post:
+      description: This API will verify new customer by sending SMS.
+      headers:
+        x-cms-transactionId:
+          type: string
+          required: true
+          minLength: 36
+          maxLength: 36
+          example:
+            hdsfhjdh-jxbv859a-sjdf7643a-3746bbda
+        ClientId:
+          type: string
+          required: true
+          example:
+            hsdfgysdhfcdshf37er6twgsdhfjcd
+        ClientSecret:
+          type: string
+          required: true
+          example:
+            dsgfhaegur457r6ewsewegrfjesh
+      body:
+        application/json:
+          properties:
+            verificationRequest:
+              type: object
+              required: true
+              properties:
+                contactType:
+                  required: true
+                  enum:
+                    - mobile
+                    - email
+                  example:
+                    mobile
+                countryCode:
+                  required: false
+                  enum:
+                    - '+91'
+                    - '+1'
+                  example: '+91'
+                mobile:
+                  type: string
+                  required: false
+                  example:
+                    '5676456354'
+                messageContent:
+                  type: string
+                  required: true
+                  example:
+                    dsfhdshxf
+                email:
+                  type: string
+                  required: true
+                  example:
+                    testUser@gmail.com
+      responses:
+        200:
+          body:
+            application/json:
+              properties:
+                verificationResponse:
+                  type: object
+                  required: true
+                  properties:
+                    eventInstanceId:
+                      type: string
+                      required: true
+                      example:
+                        dsfhsdfvjhdfew87yr4r8e4r
+                    status:
+                      type: string
+                      required: true
+                      enum:
+                        - success
+                        - failure
+                      example:
+                        success
+  /email:
+    post:
+      
+  /customerDetail:
+    post:
+      
+
+            
+        
