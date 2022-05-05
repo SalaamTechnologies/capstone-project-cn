@@ -1,0 +1,16 @@
+#%RAML 1.0 Trait
+types: 
+  error-type: !include data-types/error-type.raml
+  400-example: !include examples/400.raml
+  401-example: !include examples/401.raml
+  404-example: !include examples/404.raml
+  500-example: !include examples/500.raml
+
+
+
+
+/get:
+    responses:
+      400:
+        body:
+          
